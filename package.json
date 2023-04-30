@@ -5,7 +5,7 @@
   "author": "Aguiar <devaguiar14@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "test:staged": "jest",
     "prepare": "npx husky install",
     "create-hook": "husky add .husky/pre-commit \"yarn test:staged\""
