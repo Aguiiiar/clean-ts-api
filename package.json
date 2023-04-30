@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Aguiar <devaguiar14@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^29.5.1",
@@ -20,8 +23,5 @@
     "lint-staged": "^13.2.2",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
-  },
-  "scripts": {
-    "test": "jest"
   }
 }
