@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "test:staged": "jest"
+    "test:staged": "jest",
+    "prepare": "npx husky install",
+    "create-hook": "husky add .husky/pre-commit \"yarn test:staged\""
   },
   "dependencies": {},
   "devDependencies": {
