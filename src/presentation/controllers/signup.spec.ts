@@ -124,20 +124,20 @@ describe('SigUp Controller', () => {
     expect(httpResponse?.body).toEqual(new InvalidParamError('email'))
   })
 
-  // test('Should call with correct email', () => {
-  //   const { sut, emailValidatorStub } = makeSut()
-  //   const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
-  //   const httpRequest = {
-  //     body: {
-  //       name: 'any_name',
-  //       email: 'invalid_email@mail.com',
-  //       password: 'any_password',
-  //       passwordConfirmation: 'any_password'
-  //     }
-  //   }
-  //   sut.handle(httpRequest)
-  //   expect(isValidSpy).toHaveBeenCalledWith('invalid_email@mail.com')
-  // })
+  test('Should call with correct email', () => {
+    const { sut, emailValidatorStub } = makeSut()
+    const isValidSpy = jest.spyOn(emailValidatorStub, 'isValid').mockReturnValueOnce(false)
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'invalid_email@mail.com',
+        password: 'any_password',
+        passwordConfirmation: 'any_password'
+      }
+    }
+    sut.handle(httpRequest)
+    expect(isValidSpy).toHaveBeenCalledWith('invalid_email@mail.com')
+  })
 
   test('Should return 500 if EmailValidator throws', () => {
     const { sut, emailValidatorStub } = makeSut()
@@ -209,5 +209,25 @@ describe('SigUp Controller', () => {
     const httpResponse = sut.handle(httpRequest)
     expect(httpResponse?.statusCode).toBe(500)
     expect(httpResponse?.body).toEqual(new ServerError())
+  })
+
+  test('Should return 200 if valid data is provided', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        name: 'valid_name',
+        email: 'valid_email@mail.com',
+        password: 'valid_password',
+        passwordConfirmation: 'valid_password'
+      }
+    }
+    const httpResponse = sut.handle(httpRequest)
+    expect(httpResponse?.statusCode).toBe(200)
+    expect(httpResponse?.body).toEqual({
+      id: 'valid_id',
+      name: 'valid_name',
+      email: 'valid_email@mail.com',
+      password: 'valid_password'
+    })
   })
 })
