@@ -5,10 +5,14 @@
   "author": "Aguiar <devaguiar14@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watch",
-    "test:staged": "jest",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watchAll -c jest-unit.config.js",
+    "test:integration": "npm test -- --watchAll -c jest-integration.config.js",
+    "test:staged": "npm test --findRelatedTests --bail",
+    "test:ci": "npm test -- --coverage",
     "prepare": "npx husky install",
-    "create-hook": "husky add .husky/pre-commit \"yarn test:staged\""
+    "create-hook": "husky add .husky/pre-commit \"npm test:staged\""
   },
   "dependencies": {},
   "devDependencies": {
