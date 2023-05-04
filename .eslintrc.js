@@ -12,6 +12,7 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-namespace': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
     'import/export': 'off'
   }
 }
